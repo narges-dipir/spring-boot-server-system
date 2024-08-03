@@ -1,5 +1,8 @@
 package com.narcis.amazing_spring;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -16,5 +19,10 @@ public class RestApiController {
                 new Coffee("Cafe Lareno"),
                 new Coffee("Cafe Tres Pontas")
         ));
+    }
+
+    @GetMapping(value = "/coffee")
+    Iterable<Coffee> getCoffees() {
+        return coffees;
     }
 }
