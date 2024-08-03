@@ -1,12 +1,10 @@
 package com.narcis.amazing_spring;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class RestApiController {
@@ -24,5 +22,14 @@ public class RestApiController {
     @GetMapping(value = "/coffee")
     Iterable<Coffee> getCoffees() {
         return coffees;
+    }
+    @GetMapping("/coffee/{id}")
+    Optional<Coffee> getCoffeeById(@PathVariable String id) {
+        for (Coffee coffee: coffees) {
+            if (coffee.getId().equals(id)){
+                return Optional.of(coffee);
+            }
+        }
+        return Optional.empty();
     }
 }
